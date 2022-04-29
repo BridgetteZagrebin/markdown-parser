@@ -131,7 +131,7 @@ public class MarkdownParseTest {
     @Test
     public void failTest() throws IOException{
         ArrayList<String> testList = new ArrayList<>();
-        Path fileName = Path.of("test-file8.md");
+        Path fileName = Path.of("not a file");
         String content = Files.readString(fileName);
         ArrayList<String> links = MarkdownParse.getLinks(content);
         testList.add("a link on the first line");
