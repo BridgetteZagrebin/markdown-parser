@@ -128,4 +128,13 @@ public class MarkdownParseTest {
         testList.add("a link on the first line");
         assertEquals(testList, links);
     }
+    @Test
+    public void failTest() throws IOException{
+        ArrayList<String> testList = new ArrayList<>();
+        Path fileName = Path.of("not a file");
+        String content = Files.readString(fileName);
+        ArrayList<String> links = MarkdownParse.getLinks(content);
+        testList.add("a link on the first line");
+        assertEquals(testList, links);
+    }
 }
