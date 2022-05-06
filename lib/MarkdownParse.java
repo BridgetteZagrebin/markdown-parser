@@ -40,24 +40,8 @@ public class MarkdownParse {
                 continue;
             }
             
-            boolean endLink = false;
-            while (endLink == false) {
-                if (markdown.length() == closeParen + 1) {
-                    endLink = true;
-                }
-
-                else if (markdown.charAt(closeParen + 1) == ')') {
-                    closeParen += 1;
-                }
-                
-                else {
-                    endLink = true;
-                }
-            }
-
             toReturn.add(markdown.substring(openParen + 1, closeParen));
             currentIndex = closeParen + 1;
-
         }
 
         return toReturn;
