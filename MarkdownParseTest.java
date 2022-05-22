@@ -1,6 +1,7 @@
 import static org.junit.Assert.*;
 import java.beans.Transient;
 import java.io.IOException;
+import java.util.List;
 import java.util.ArrayList;
 import org.junit.*;
 
@@ -145,5 +146,35 @@ public class MarkdownParseTest {
         ArrayList<String> links = MarkdownParse.getLinks(content);
         testList.add("a link on the first line");
         assertEquals(testList, links);
+    }
+
+    @Test
+    public void snippet1Test() throws IOException {
+        Path fileName = Path.of("snippet1.md");
+        String content = Files.readString(fileName);
+        List<String> links = MarkdownParse.getLinks(content);
+        List<String> expected = List.of("`google.com");
+
+        assertEquals(expected, links);
+    }
+
+    @Test
+    public void snippet2Test() throws IOException {
+        Path fileName = Path.of("snippet2.md");
+        String content = Files.readString(fileName);
+        List<String> links = MarkdownParse.getLinks(content);
+        List<String> expected = List.of("a.com", "a.com(())", "example.com");
+
+        assertEquals(expected, links);
+    }
+
+    @Test
+    public void snippet3Test() throws IOException {
+        Path fileName = Path.of("snippet3.md");
+        String content = Files.readString(fileName);
+        List<String> links = MarkdownParse.getLinks(content);
+        List<String> expected = List.of("https://sites.google.com/eng.ucsd.edu/cse-15l-spring-2022/schedule");
+
+        assertEquals(expected, links);
     }
 }
